@@ -10,8 +10,10 @@
 
 - [X] HTTP Basic 认证
 - [X] Presto基本查询
-- [X] Presto任务状态
+- [X] command line
+- [ ] Tasks任务状态[使用独立请求实时查看任务状态]
 - [ ] 格式化输出
+- [ ] Stages任务流
 
 ## Requirements
 
