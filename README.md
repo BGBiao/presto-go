@@ -11,6 +11,8 @@
 - [X] HTTP Basic 认证
 - [X] Presto基本查询
 - [X] command line
+- - [X] 支持catalog参数
+- - [X] 支持--file指定sql文件执行
 - [ ] Tasks任务状态[使用独立请求实时查看任务状态]
 - [ ] 格式化输出
 - [ ] Stages任务流
