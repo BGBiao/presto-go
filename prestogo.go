@@ -156,7 +156,7 @@ func main() {
 				},
 				cli.StringFlag{
 					Name:   "server, s",
-					Value:  "10.221.196.92",
+					Value:  "localhost",
 					Usage:  "the presto host.",
 					EnvVar: "PRESTO_HOST,PRESTO",
 				},
