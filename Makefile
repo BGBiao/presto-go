@@ -8,6 +8,7 @@ GOFILES=`find . -name "*.go" -type f -not -path "./vendor/*"`
 
 default:
 	@echo "build the ${BINARY}"
+	@#这个--tags=jsoniter是个什么鬼啊
 	@go build -o ${BINARY} -tags=jsoniter
 	@echo "build done."
 
