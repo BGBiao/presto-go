@@ -201,13 +201,6 @@ func (c *Conn) Next() ([][]interface{}, error) {
 		}
 	}
 
-	/*
-	   if len(rowdatas) > 0 {
-	       errordata = nil
-	   }else {
-	       errordata = fmt.Errorf("Sorry,No record matched!")
-	   }
-	*/
 	return rowdatas, errordata
 }
 

@@ -13,6 +13,8 @@
 - [X] command line
 - - [X] 支持catalog参数
 - - [X] 支持--file指定sql文件执行
+- [X] 结果导出到文件(csv)
+- [X] 结果输出格式化
 - [ ] Tasks任务状态[使用独立请求实时查看任务状态]
 - [ ] 格式化输出
 - [ ] Stages任务流
@@ -23,7 +25,7 @@
 - Presto 0.14X or newer 
 
 
-## Installation and Usage
+## Installation and Usage of libs
 
 ```
 $ go get -v github.com/xxbandy/presto-go/presto
@@ -78,4 +80,53 @@ query id:20190328_102808_00012_t6972
 列名: [name age sex]
 数据:
 [bgops 18 male]
+
+$ 
+```
+
+## Command line usages
+
+```
+# build binary execfile
+$ make
+build the prestogo
+build done.
+
+$ ls
+docs  Makefile  presto  prestogo  prestogo.go  README.md
+
+# case 1
+$ ./prestogo query --sql "select appname,ip from tds.ops_app where appname='dataapi' or appname='repos'" -o /tmp/appinfo.csv
+
+本次查询sql: select appname,ip from tds.ops_app where appname='dataapi' or appname='repos'
+query id:20190522_101948_00122_ps3pk
+进度: 1
+节点: 2
+是否关闭: true
+状态: FINISHED
+列名: [appname ip]
+数据:
++------------+----------------+
+|  APPNAME   |       IP       |
++------------+----------------+
+| dataapi    | 10.221.19.255  |
+| dataapi    | 10.24.212.224 |
+| repos | 10.96.11.236  |
+| repos | 10.97.7.165   |
+| repos | 10.17.61.4    |
+| repos | 10.25.8.29    |
+| repos | 10.25.8.70    |
++------------+----------------+
+记录条数:7
+
+$ cat /tmp/appinfo.csv
+appname,ip
+dataapi,10.221.19.255
+dataapi,10.24.212.224
+repos,10.96.11.236
+repos,10.97.7.165
+repos,10.17.61.4
+repos,10.25.8.29
+repos,10.25.8.70
+
 ```
