@@ -16,6 +16,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -103,6 +104,9 @@ func fetchall(host, sql, catalog string, port int, outputfile string) {
 							switch {
 							case ptype == "string":
 								paramSlice = append(paramSlice, param.(string))
+							case ptype == "float64":
+								tmpparam := strconv.FormatFloat(param.(float64), 'f', 2, 64)
+								paramSlice = append(paramSlice, tmpparam)
 							default:
 								paramSlice = append(paramSlice, "")
 							}
@@ -123,8 +127,15 @@ func fetchall(host, sql, catalog string, port int, outputfile string) {
 						var paramSlice []string
 						for _, param := range v {
 							ptype := fmt.Sprintf("%T", param)
+							// 每一列数据类型进行断言，并进行适当格式替换插入到table
 							switch {
 							case ptype == "string":
+								paramSlice = append(paramSlice, param.(string))
+							case ptype == "float64":
+								// fmt.Printf("%T %T %v\n",ptype,strconv.FormatFloat(param.(float64),'f',2,64),param)
+								tmpparam := strconv.FormatFloat(param.(float64), 'f', 2, 64)
+								paramSlice = append(paramSlice, tmpparam)
+							case ptype == "int64":
 								paramSlice = append(paramSlice, param.(string))
 							// 假设为<nil>
 							default:
