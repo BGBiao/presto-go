@@ -15,6 +15,7 @@
 - - [X] 支持--file指定sql文件执行
 - [X] 结果导出到文件(csv)
 - [X] 结果输出格式化
+- [ ] 增加schema指定
 - [ ] Tasks任务状态[使用独立请求实时查看任务状态]
 - [ ] 格式化输出
 - [ ] Stages任务流
@@ -43,7 +44,7 @@ func main() {
   req, posterr := presto.NewQuery("localhost", 8080, "root", "", "hive", "default", sql)
   if posterr != nil {
     fmt.Println(posterr)
-  } else {
+   else {
     fmt.Println(req.GetQueryId())
     //fmt.Println(req.GetNextUri())
 
